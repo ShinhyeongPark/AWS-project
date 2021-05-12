@@ -1,54 +1,52 @@
 #Flask로 API 서버 만들기
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
+from flaskext.mysql import MySQL
+from datetime import datetime
+import json
+import pymysql
 
 app = Flask(__name__)
 api = Api(app) #Flask 객체에 Api 객체 등록
 
-#예시로 todos에 저장 -> 이제는 DB에 저장
-todos = {}
-count = 1
+config = {
+    'host': '127.0.0.1',
+    'port': 3306,
+    'user': 'root',
+    'password': 'mysql',
+    'database': 'users'
+}
 
-@api.route('/todos') #Body에 데이터 전송
-class TodoPost(Resource):
-    #회원가입
+
+class SearchUser(Resource):
+    def get(self, email):
+        return {
+            'user_mail': email
+        }
+
+class InsertUser(Resource):
+    def __init__(self):
+        self.conn = pymysql.connect(**config)
+        self.cursor = self.conn.cursor()
+
     def post(self):
-        global count
-        global todos
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('email', type=str)
+            parser.add_argument('password', type=str)
+            parser.add_argument('name', type=str)
 
-        idx = count
-        count += 1
-        todos[idx] = request.json.get('data')
+            args = parser.parse_args()
+            _userEmail = args['email']
+            _userPassword = args['password']
+            _userName = args['name']
 
-        return {
-            'todo_id': idx,
-            'data': todos[idx]
-        }
+            return {'Email': args['email'], 'Name': args['name'], 'Password': args['password']}
+            
+        except Exception as e:
+            return {'error': str(e)}
 
-@api.route('/todos/<int:todo_id>')
-class TodoSimple(Resource):
-    #로그인
-    def get(self, todo_id):
-        return {
-            'todo_id': todo_id,
-            'data': todos[todo_id]
-        }
-
-    #회원정보 수정
-    def put(self, todo_id):
-        todos[todo_id] = request.json.get('data')
-        return {
-            'todo_id': todo_id,
-            'data': todos[todo_id]
-        }
-
-    #회원탈퇴
-    def delete(self,todo_id):
-        del todos[todo_id]
-        return {
-            "delete" : "succes"
-        }
-
+api.add_resource(InsertUser, '/users/insert')
 
 if __name__ == '__main__':
-    app.run(port=8001)
+    app.run(port=8001, debug=True)
