@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>로그인</title>
+    <title>회원가입</title>
     <link rel="stylesheet" href="../static/style.css?after">
 </head>
 
@@ -11,9 +11,19 @@
             <div class="button-wrap">
                 <div id="btn"></div>
                 <button type="button" class="togglebtn" onclick="login();">SIGN IN</button>
-                <button type="button" class="togglebtn" onclick="register();">SIGN UP</button>
+                <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
             </div>
-            <div class="social-icons"></div>
+            <form method="POST" id="signin" action="/signin" class="input-group">
+                <input name="user_email" type="text" value="" class="input-field" placeholder="Email을 입력해주세요." required>
+                <input name="user_password" type="password" value="" class="input-field" placeholder="비밀번호를 입력해주세요." required> {% if messages %} {% for message in messages %} {{ message.tags }} {{ message.message }} {% endfor %} {% endif %}
+                <button class="submit">Login</button>
+            </form>
+            <form method="POST" id="signup" action="/signup" class="input-group">
+                <input name="user_email" type="email" class="input-field" placeholder="Email 입력해" required>
+                <input name="user_password" type="password" class="input-field" placeholder="어려운 비밀번호" required>
+                <input name="user_name" type="text" class="input-field" placeholder="닉네임을 사용할거여" required>
+                <button class="submit">REGISTER</button>
+            </form>
         </div>
     </div>
     <script>
