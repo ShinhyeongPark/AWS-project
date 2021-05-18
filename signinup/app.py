@@ -27,9 +27,16 @@ class Signin(Resource):
         cursor = conn.cursor()
 
         sql = "SELECT user_password FROM users WHERE user_email = '%s'" % (email)
+        cursor.execute(sql)
+
         data = cursor.fetchall()
 
-        print(data)
+        for d in data:
+            print(d)
+        # if data == password:
+        #     print('succes')
+        # else:
+        #     print('flase')
 
 
 class Signup(Resource):

@@ -2,8 +2,8 @@ import boto3
 
 s3_resource = boto3.resource( 
 				's3', 
-                aws_access_key_id = "",         # 액세스 ID
-                aws_secret_access_key = "+",    # 비밀 엑세스 키 
+                aws_access_key_id = "AKIA5VZTIAOJSOLVW463",         # 액세스 ID
+                aws_secret_access_key = "2WChAcMTCEfuHL2wSSLtCt5H6loktGmAWTihc6f+",    # 비밀 엑세스 키 
                 region_name = "eu-north-1"
 )
 
