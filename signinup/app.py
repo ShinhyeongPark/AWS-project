@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.sql.functions import user
 from flaskext.mysql import MySQL
 
+#Flask <-> MySQL
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -14,10 +15,12 @@ mysql.init_app(app)
 
 #로그인
 class Signin(Resource):
+    #http://127.0.0.1/signin
     @app.route('/signin')
     def signinPage():
         return render_template('signin.html')
     
+    #[POST] http://127.0.0.1/signin
     @app.route('/signin', methods = ['POST'])
     def signinPost():
         email = request.form['user_email']
@@ -26,6 +29,7 @@ class Signin(Resource):
         conn = mysql.connect()
         cursor = conn.cursor()
 
+        #입력데이터와 조회한 데이터를 비교
         sql = "SELECT user_password FROM users WHERE user_email = '%s'" % (email)
         cursor.execute(sql)
 
@@ -33,17 +37,15 @@ class Signin(Resource):
 
         for d in data:
             print(d)
-        # if data == password:
-        #     print('succes')
-        # else:
-        #     print('flase')
 
-
+#회원가입
 class Signup(Resource):
+    #http://127.0.0.1/signup
     @app.route('/signup')
     def signupPage():
         return render_template('signup.html')
 
+    #[POST] #http://127.0.0.1/signup
     @app.route('/signup', methods = ['POST'])
     def signupPost():
         email = request.form['user_email']
@@ -53,15 +55,17 @@ class Signup(Resource):
         conn = mysql.connect()
         cursor = conn.cursor()
 
+        #데이터베이스에 사용자 정보 사입
         sql = "INSERT INTO users(user_email, user_password, user_name) VALUES ('%s', '%s', '%s')" % (email, password, name)
         cursor.execute(sql)
 
         data = cursor.fetchall()
 
+        #회원가입 성공
         if not data:
             conn.commit()
             return render_template('signin.html')
-        else:
+        else: #실패
             conn.rollback()
             return "Register Failed"
 
