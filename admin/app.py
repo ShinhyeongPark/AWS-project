@@ -3,16 +3,14 @@ from flask import Flask, request, render_template
 from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
-app.config.from_pyfile('../config.py')
-#[MySQL DB연동]
-database = create_engine(app.config['DB_URL'], encoding = 'utf-8')
-app.database = database
 
+#http://127.0.0.1:8000/
 @app.route('/')
-def home():
+def home(): #메인페이지 이동
     return render_template('index.html')
 
-@app.route('/admin')
+#http://127.0.0.1:8000/admin
+@app.route('/admin') #관리자페이지 이동
 def admin():
     return 'Admin Page'
 
