@@ -14,3 +14,9 @@
 
 ## 시스템 아키텍처
 ![중간](https://user-images.githubusercontent.com/57867611/119221992-17abf580-bb2d-11eb-801b-055c2b3d1f05.png)
+
+
+## Socket Programming
+> IoT의 라즈베리파이와 서버 연결
+
+## DB 설계
