@@ -13,7 +13,7 @@
 ```
 
 ## 시스템 아키텍처
-![중간](https://user-images.githubusercontent.com/57867611/119221992-17abf580-bb2d-11eb-801b-055c2b3d1f05.png)
+![final](https://user-images.githubusercontent.com/57867611/119980231-f482b980-bff6-11eb-98e2-9546fd2fb157.png)
 
 
 ## Socket Programming
