@@ -16,7 +16,7 @@
 		- 메인 페이지
 
 ## ⚙️ System Architecture
-![final](~https://user-images.githubusercontent.com/57867611/119980231-f482b980-bff6-11eb-98e2-9546fd2fb157.png~)
+![final](https://user-images.githubusercontent.com/57867611/120060580-8b04b880-c093-11eb-91ba-a5af17be0947.png)
 
 1. IoT가 작물이미지를 촬영하면, 그 이미지를 S3에 저장하고 소켓통신을 통해 이미지의 이름을 서버로 전송
 2. 람다의 트리거인 S3에 객체가 업로드되면, 객체의 ARN, 객체의 이름을 API로 전송하는 람다가 호출됩니다.(이미지를 전송하는게 아닌 이미지의 데이터를 전송)
