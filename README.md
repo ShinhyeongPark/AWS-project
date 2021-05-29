@@ -1,19 +1,19 @@
 # 작물 및 병충해 분류/인식 서비스
 ## 📌Abstract
-	- 병충해와 잡초를 인식해 자동으로 분류하고 분석결과에 따라 약을 뿌리는 서비스
-	- IoT + Bigdata + AI + **Cloud** 기술을 사용한 융합 프로젝트
+- 병충해와 잡초를 인식해 자동으로 분류하고 분석결과에 따라 약을 뿌리는 서비스
+- IoT + Bigdata + AI + **Cloud** 기술을 사용한 융합 프로젝트
 	
 ##  💡Role
-	1. 서비스 간 데이터 연결 구축
-		- S3 이미지 추가시 Lambda 호출
-		- S3 객체 ARN을 DB에 저장 및 API로 전송하는 Lambda 구현
-		- S3 객체 데이터를 사용해 S3의 이미지를 로드하는 기능 구현
-		- 이미지 수신시 자동으로 AI 동작 및 결과를 S3와 DB에 저장 기능 구현
-		- IoT와 EC2간의 데이터 송수신을 위한 소켓 프로그래밍 구현
-	2. 서비스에 필요한 Database 운영을 위한 Docker-compose 작성
-	3. 서비스에 필요한 Web 구현
-		- JWT를 사용한 로그인/회원가입 페이지
-		- 메인 페이지
+1. 서비스 간 데이터 연결 구축
+	- S3 이미지 추가시 Lambda 호출
+	- S3 객체 ARN을 DB에 저장 및 API로 전송하는 Lambda 구현
+	- S3 객체 데이터를 사용해 S3의 이미지를 로드하는 기능 구현
+	- 이미지 수신시 자동으로 AI 동작 및 결과를 S3와 DB에 저장 기능 구현
+	- IoT와 EC2간의 데이터 송수신을 위한 소켓 프로그래밍 구현
+2. 서비스에 필요한 Database 운영을 위한 Docker-compose 작성
+3. 서비스에 필요한 Web 구현
+	- JWT를 사용한 로그인/회원가입 페이지
+	- 메인 페이지
 
 ## ⚙️ System Architecture
 ![final](https://user-images.githubusercontent.com/57867611/120060580-8b04b880-c093-11eb-91ba-a5af17be0947.png)
