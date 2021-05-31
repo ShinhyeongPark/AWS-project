@@ -22,7 +22,8 @@ client_socket, addr = server_socket.accept() #클라이언트 연결 성공
 while True:
     #data : 이미지의 이름
     data = client_socket.recv(1024) #클라이언트로 부터 메시지를 받음 (인코딩된 데이터)
-    decdata=data.decode("utf-8")[:-4] #데이터를 Decoding
+    decdata=data.decode("utf-8")[:-4] + '.txt' #데이터를 Decoding
+    #imageName.jpg -> imageName -> imageName.txt
 
     #클라이언트로 부터 이미지의 이름 수신
     time.sleep(4) #요청은 왔으나, 이미지에 대한 결과가 도출되는데 2~3초 정도 걸리므로 Sleep
@@ -30,10 +31,11 @@ while True:
 
     #요청받은 이미지의 이름을 사용해
     #runs/detect/labels/decdata.txt 내용 저장
-    output = open('runs/detect/labels/' + decdata, 'r')
-    result = output.read()
-    acc = int(result[0])
+    output = open('runs/detect/labels/' + decdata, 'r') #[open] runs/detect/labels/2021_5_31_13_48_59.txt
+    result = output.read() #파일 내용 저장
+    acc = int(result[0]) #result[0] : 분류값
     client_socket.send(acc.encode())
+    #acc이 정수라서 만약 send에서 오류 발생시 str로 다시 변경
     #client_socket.send(decdata.encode())
 
 #통신 종료
