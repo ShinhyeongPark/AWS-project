@@ -6,7 +6,7 @@
 ## ➡️ Flow
 <img width="1587" alt="스크린샷 2021-06-07 오전 10 44 43" src="https://user-images.githubusercontent.com/57867611/120948603-8ae47700-c77d-11eb-9f16-201f65f54d4b.png">
 
-##  💡Role
+## 💡 Role
 1. 서비스 간 데이터 연결 구축
 	- S3 이미지 추가시 Lambda 호출
 	- S3 객체 ARN을 DB에 저장 및 API로 전송하는 Lambda 구현
